@@ -24,7 +24,7 @@ export const LogoImg = styled.img /*css*/` {
 
 export const TMDBLogoImg = styled.img /*css*/` {
     width: 100px;
-    
+
     @media screen and (max-width: 500px) {
         width: 80px;
     }
