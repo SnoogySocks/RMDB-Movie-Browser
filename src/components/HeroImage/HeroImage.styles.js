@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div/*css*/ `{
+export const Wrapper = styled.div`
 
 	background: linear-gradient(
         to bottom, rgba(0, 0, 0, 0)
@@ -22,17 +22,17 @@ export const Wrapper = styled.div/*css*/ `{
         }
     }
  
-}`;
+`;
 
-export const Content = styled.div/*css*/ `{
+export const Content = styled.div`
 
     padding: 20px;
     max-width: var(--maxWidth);
     margin: 0 auto; 
 
-}`;
+`;
 
-export const Text = styled.div/*css*/ `{
+export const Text = styled.div`
 
     z-index: 100;
     max-width: 700px;
@@ -62,4 +62,4 @@ export const Text = styled.div/*css*/ `{
         max-width: 100%;
     }
 	
-}`;
+`;
