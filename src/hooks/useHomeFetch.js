@@ -3,17 +3,19 @@ import { useState, useEffect } from "react";
 import API from "../API";
 
 const initialState = {
-    page: 0,
-    results: [],
-    total_pages: 0,
-    total_results: 0
+	page: 0,
+	results: [],
+	total_pages: 0,
+	total_results: 0,
 };
 
 const useHomeFetch = () => {
+	const [searchTerm, setSearchTerm] = useState("");
 	const [state, setState] = useState(initialState);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
-
+	const [isLoadingMore, setIsLoadingMore] = useState(false);
+	
 	const fetchMovies = async (page, searchTerm = "") => {
 		try {
 			setError(false);
@@ -35,11 +37,13 @@ const useHomeFetch = () => {
 		setLoading(false);
 	};
 
-	// Initial render
-    useEffect(() => fetchMovies(1), []);
+	// Initial render and search
+	useEffect(() => {
+		setState(initialState);
+		fetchMovies(1, searchTerm);
+	}, [searchTerm]);
 
-    return { state, loading, error };
-    
+	return { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore };
 };
 
 export default useHomeFetch;
