@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import RMDBLogo from "../../images/react-movie-logo.svg";
@@ -6,18 +6,34 @@ import RMDBLogo from "../../images/react-movie-logo.svg";
 import TMDBLogo from "../../images/tmdb_logo.svg";
 
 import { Wrapper, Content, LogoImg, TMDBLogoImg } from "./Header.styles";
+// Context
+import { Context } from "../../context";
 
-const Header = () => (
-	<Wrapper>
-		<Content>
-			<Link to="/">
-				<LogoImg src={RMDBLogo} alt="rmdb-logo" />
-			</Link>
-			<Link to="https://www.themoviedb.org/">
-				<TMDBLogoImg src={TMDBLogo} alt="tmdb-logo" />
-			</Link>
-		</Content>
-	</Wrapper>
-);
+const Header = () => {
+	const [user] = useContext(Context);
+	console.log(user);
+
+	return (
+		<Wrapper>
+			<Content>
+				<Link to="/">
+					<LogoImg src={RMDBLogo} alt="rmdb-logo" />
+				</Link>
+				{user ? (
+					<span>
+						Logged in as: {user.username}
+					</span>
+				) : (
+					<Link to="/login">
+						<span> Log in</span>
+					</Link>
+				)}
+				<Link to="https://www.themoviedb.org/">
+					<TMDBLogoImg src={TMDBLogo} alt="tmdb-logo" />
+				</Link>
+			</Content>
+		</Wrapper>
+	);
+};
 
 export default Header;
